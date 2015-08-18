@@ -1,5 +1,6 @@
 #intro-slide {
-  background-color: rgba(255,105,180, 0.85);
+  background: url('../../assets/backgrounds/abstract_pink.jpg');
+  background-size: cover;
 }
 
 .intro-slide-svg svg { 
@@ -23,10 +24,10 @@
 #leinsdorf-i {
   stroke-dasharray: 100;
 }
-/*
+
 #welcome-excl-pt {
   stroke-dasharray: 1100;
-}*/
+}
 
 #nyc {
   stroke-dasharray: 400;

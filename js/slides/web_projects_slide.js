@@ -18,8 +18,14 @@ var renderCSProject = function(projectObject) {
   $(domEl).append(html);
 };
 
+var showGithubLogo = function() {
+  $('.col').hover(function() {$(this).find('.github-logo').css('opacity', 1)}, function() {$(this).find('.github-logo').css('opacity', 0)})
+
+};
+
 var skrollDev = function() {
   var elementArray = $('#dev-svg');
   var scrollDuration = 15;
   skrollSVG(elementArray, scrollDuration);
 };
+

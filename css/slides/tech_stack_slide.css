@@ -1,5 +1,5 @@
 #tech-stack-slide {
-  background: url('../../assets/backgrounds/abstract.jpg'); 
+  background: url('../../assets/backgrounds/abstract2.jpg'); 
   background-size: cover;
 }
 
@@ -24,7 +24,7 @@
 
 .stack {
   width: 49%;
-  margin-top: 2em;
+  margin-top: 1em;
   float: left;
 }
 

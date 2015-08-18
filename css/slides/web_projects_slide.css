@@ -78,6 +78,7 @@
   border-radius: 5px; 
   width: inherit; 
   height: inherit;
+  overflow: scroll;
 }
 
 .description {

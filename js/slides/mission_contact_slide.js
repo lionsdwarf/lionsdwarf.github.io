@@ -6,7 +6,6 @@ var renderEmail = function() {
   $(element).appendTo($('#email-li'));
 };
 
-
 var skrollAbout = function() {
   var elementArray = $('#about-svg').children();
   var scrollDuration = 15;

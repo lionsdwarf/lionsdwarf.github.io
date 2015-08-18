@@ -3,7 +3,6 @@ App = {
 };
 
 $(function(){
-
   //Slide - About me
   hideElement($('#about-me'), 8);
 
@@ -13,7 +12,9 @@ $(function(){
   // skrollIntroDiv();
   skrollLeinsdorf();
   skrollDotNYC();
-  hideElement($('#dot-nyc'), 1);
+  skrollWelcome();
+  hideElement($('#welcome-excl-pt'), 3);
+  hideElement($('#dot-nyc'), 3);
   skrollLeinsdorfDuplicates();
   finalizeSlide($('#intro-slide'));
   
@@ -24,12 +25,12 @@ $(function(){
   renderProject(projects.art_victim);
   renderProject(projects.jac_soundfactory);
   renderProject(projects.happy_plantr);
+  showGithubLogo();
   skrollDev();
   skrollGap(1);
   fadeElement($('#dev-svg'), 10);
   showElement($('.row'), 10);
   skrollGap(20);
-  $('.col').hover(function() {$(this).find('.github-logo').css('opacity', 1)}, function() {$(this).find('.github-logo').css('opacity', 0)})
   finalizeSlide($('#web-projects-slide'));
 
   //Slide - Tech stack
@@ -51,9 +52,5 @@ $(function(){
   skrollAbout();
   endSkrollr($('#mission-contact-slide'));
 
-  skrollr.init({
-    render: function() {
-      typeStacks();
-   }
-  });
+  skrollr.init();
 });

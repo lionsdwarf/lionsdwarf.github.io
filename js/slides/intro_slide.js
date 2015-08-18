@@ -25,6 +25,12 @@ var skrollDotNYC = function() {
   skrollSVG(elementArray, scrollDuration);
 };
 
+var skrollWelcome = function() {
+  var elementArray = $('#welcome-excl-pt').children();
+  var scrollDuration = 7;
+  skrollSVG(elementArray, scrollDuration);
+};
+
 var skrollLeinsdorfDuplicates = function() {
   var elementArray = $('#leinsdorf-duplicates').children();
   var scrollDuration = 0.5;
