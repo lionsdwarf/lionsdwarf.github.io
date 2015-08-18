@@ -1,0 +1,58 @@
+#tech-stack-slide {
+  background: url('../../assets/backgrounds/abstract.jpg'); 
+  background-size: cover;
+}
+
+#tek-svg {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  z-index: -10;
+}
+
+#tek{
+  stroke-dasharray: 7000;
+}
+
+#tek-t {
+  stroke-dasharray: 800;
+}
+
+#typed-svg-invisible {
+  stroke-dasharray: 150;
+}
+
+.stack {
+  width: 49%;
+  margin-top: 2em;
+  float: left;
+}
+
+#tech-stack-left li {
+  text-align: right;
+}
+
+#tech-stack-right li {
+  text-align: left;
+}
+
+#tech-stack-slide li img {
+  height: 4em;
+  margin: 1em;
+}
+
+#tech-stack-slide ul {
+  list-style: none;
+}
+
+.tech-name {
+  font-size: 2em;
+  display: inline;
+  vertical-align: 100%;
+}
+
+.tech-img-div {
+  display: inline-block;
+  width: 5.8em;
+  height: 3.2em;
+}
