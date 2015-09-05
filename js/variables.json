@@ -31,7 +31,7 @@ var projects = {
     'project_url' : 'https://art-victim.herokuapp.com/',
     'github_url' : 'https://github.com/lionsdwarf/art-victim',
     'description' : 'Custom e-card and collage maker. Users select graphics and manipulate images on a live canvas. Sortables control layering.',
-    'dom_el' : '#row-0-col-1'
+    'dom_el' : '#row-1-col-0'
   },
   'jac_soundfactory' : {
     'name' : 'JAC Soundfactory',
@@ -39,15 +39,15 @@ var projects = {
     'project_url' : 'http://jac-sound-factory.herokuapp.com/',
     'github_url' : 'https://github.com/qodesmith/JAC-Sound-Factory',
     'description' : 'A sound sequencer that records, saves and replays custom music tracks. Sound catalogues allow users to dynamically populate the instrument keys.',
-    'dom_el' : '#row-1-col-0'
-  },
-  'happy_plantr' : {
-    'name' : 'Happy Plant.r',
-    'data_name' : 'happy-plantr',
-    'project_url' : 'https://happy-plantr.herokuapp.com/',
-    'github_url' : 'https://github.com/lionsdwarf/happy-plant',
-    'description' : 'A watering notification tool for plant owners. Sends MMS notifications according to user-defined plant watering schedules.',
     'dom_el' : '#row-1-col-1'
+  },
+  'saturdays_surf' : {
+    'name' : 'Saturdays Surf',
+    'data_name' : 'saturdays-surf',
+    'project_url' : 'http://www.saturdaysnyc.com/',
+    'github_url' : 'https://github.com/lionsdwarf',
+    'description' : 'E-commerce website for the fashion brand.',
+    'dom_el' : '#row-0-col-0'
   },
   'future_type' : {
     'name' : 'Future Type',
@@ -55,6 +55,6 @@ var projects = {
     'project_url' : 'none',
     'github_url' : 'https://github.com/lionsdwarf/future-type',
     'description' : 'The official band website -- COMING SOON',
-    'dom_el' : '#row-0-col-0'
+    'dom_el' : '#row-0-col-1'
   }
 }

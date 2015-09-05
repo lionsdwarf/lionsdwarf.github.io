@@ -21,10 +21,10 @@ $(function(){
   //Slide - Web projects
   $('.row').css('opacity', 0);
   initializeSlide($('#web-projects-slide'));
+  renderProject(projects.saturdays_surf);
   renderCSProject(projects.future_type);
   renderProject(projects.art_victim);
   renderProject(projects.jac_soundfactory);
-  renderProject(projects.happy_plantr);
   showGithubLogo();
   skrollDev();
   skrollGap(1);
