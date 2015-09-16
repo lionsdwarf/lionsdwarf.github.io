@@ -7,6 +7,7 @@ var concat = require('gulp-concat');
 var stripDebug = require('gulp-strip-debug');
 var uglify = require('gulp-uglify');
 var plumber = require('gulp-plumber');
+var ghPages = require('gulp-gh-pages');
 
 // Get and render all .style files
 gulp.task('stylesheets', function () {
@@ -53,3 +54,7 @@ gulp.task('build', ['stylesheets', 'javascripts'], function() {});
 
 gulp.task('default', ['stylesheets', 'javascripts', 'watch']);
 
+gulp.task('deploy', function() {
+  return gulp.src('./dist/**/*')
+    .pipe(ghPages());
+});
