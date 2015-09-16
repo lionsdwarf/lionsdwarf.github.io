@@ -50,7 +50,13 @@ gulp.task('watch', function() {
       ['javascripts']);
 });
 
-gulp.task('build', ['stylesheets', 'javascripts'], function() {});
+gulp.task('build', ['stylesheets', 'javascripts'], function() {
+  gulp.src('./js/*.js')
+    .pipe(concat('application.min.js'))
+    .pipe(stripDebug())
+    .pipe(uglify())
+    .pipe(gulp.dest('./js'));  
+});
 
 gulp.task('default', ['stylesheets', 'javascripts', 'watch']);
 
