@@ -54,7 +54,7 @@ gulp.task('build', ['stylesheets', 'javascripts'], function() {});
 
 gulp.task('default', ['stylesheets', 'javascripts', 'watch']);
 
-gulp.task('deploy', function() {
+gulp.task('deploy', ['build'], function() {
   return gulp.src('./dist/**/*')
     .pipe(ghPages());
 });
