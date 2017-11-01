@@ -39,7 +39,7 @@ const buildCardVals = () => {
 }
 
 
-const buildCards = cardVals => {
+const buildDeck = cardVals => {
 
   const deck = []
 
@@ -64,14 +64,33 @@ const buildCards = cardVals => {
 }
 
 
-export const generateDeck = () => {
+const shuffleDeck = (deck) => {
+
+  let shuffledDeck = []
+
+  let unshuffledCount = deck.length
+
+  let selectedIndex
+
+  while (unshuffledCount) {
+
+    selectedIndex = Math.floor(Math.random() * unshuffledCount--)
+
+    shuffledDeck.push(deck.splice(selectedIndex, 1)[0])
+
+  }
+
+  return shuffledDeck
+
+}
+
+
+export const generateShuffledDeck = () => {
 
   const cardVals = buildCardVals()
 
-  const deck = buildCards(cardVals)
+  const deck = buildDeck(cardVals)
 
-  console.log('deck : ', deck)
-
-  return deck
+  return shuffleDeck(deck)
 
 }

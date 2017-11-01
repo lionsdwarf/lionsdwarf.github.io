@@ -1,8 +1,8 @@
-import { generateDeck } from './game/blackjack'
+import { generateShuffledDeck } from './game/blackjack'
 
 const initializeGame = type => {
 
-  generateDeck()
+  generateShuffledDeck()
 
 }
 
