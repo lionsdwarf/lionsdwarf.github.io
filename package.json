@@ -1,0 +1,15 @@
+{
+  "name": "blackjack-poc",
+  "version": "0.0.1",
+  "description": "blackjack poc in html5, js, css",
+  "main": "index.js",
+  "scripts": {
+    "build": "webpack",
+    "watch": "webpack --watch"
+  },
+  "author": "joseph leinsdorf",
+  "license": "ISC",
+  "devDependencies": {
+    "webpack": "^3.8.1"
+  }
+}
