@@ -1,6 +1,8 @@
 
 const FACE_VALUE = 10
 
+const ACE_VALUE = 11
+
 const CARD = {
 
   suit: [ 'S', 'H', 'D', 'C' ],
@@ -13,7 +15,7 @@ const CARD = {
 const buildCardVals = () => {
 
   return CARD.value.map(
-    //if face card, include it's value
+    //if face or ace card, include it's value
     cardVal => typeof(cardVal) === 'number' ?
         
       {
@@ -26,7 +28,7 @@ const buildCardVals = () => {
 
       {
 
-        value: FACE_VALUE,
+        value: cardVal === 'A' ? ACE_VALUE : FACE_VALUE,
 
         face: cardVal,
 
