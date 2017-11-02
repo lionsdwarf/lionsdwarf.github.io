@@ -4,7 +4,13 @@ export const DEALER = 'dealer'
 
 export const FACE_VALUE = 10
 
-export const ACE_VALUE = 11
+export const ACE_VALUE = {
+
+  high: 11,
+
+  low: 1,
+
+}
 
 export const CARD = {
 

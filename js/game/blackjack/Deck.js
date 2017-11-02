@@ -25,7 +25,7 @@ const buildCardVals = () => {
 
       {
 
-        value: cardTitle === 'A' ? ACE_VALUE : FACE_VALUE,
+        value: cardTitle === 'A' ? ACE_VALUE.high : FACE_VALUE,
 
         face: cardTitle,
 

@@ -1,57 +1,16 @@
+//game transaction contol
+
 import UIDeal from './ui/Deal'
 
 import { PLAYER, DEALER } from './constants'
 
+import { HAND } from './Hand'
+
+import { handBusts, blackjack, dealerContinues, updateHand } from './HandLogic'
+
 let gameDeck
 
 let initDeal = true
-
-const BUST_LIMIT = 21
-
-const clearHand = () => {
-
-  return {
-
-    cards: [],
-
-    cumulativeVal: 0
-
-  }
-
-}
-
-let HAND = {
-
-  player: clearHand(),
-
-  dealer: clearHand(),
-
-}
-
-
-const updateHand = participant => {
-
-  let totalVal = 0 
-
-  let aces = 0
-
-  for (let card of HAND[participant].cards) {
-    //accumulate value of hand
-    totalVal += card.value
-    //hand is soft with aces, so tally them 
-    if (card.face && card.face === 'A') {
-
-      aces++
-       
-    }
-
-  }
-
-  HAND[participant].cumulativeVal = totalVal
-
-  HAND[participant].aces = aces
-  
-}
 
 
 const dealCard = participant => {
@@ -67,36 +26,6 @@ const dealCard = participant => {
 }
 
 
-const handBusts = participant => {
-
-  if (HAND[participant].cumulativeVal > BUST_LIMIT) {
-
-    if (HAND[participant].aces) {
-
-      toggleSoftAce(participant)
-
-      return false
-
-    }
-
-    endRound()
-
-    return true
-
-  } 
-
-  return false
-
-}
-
-
-const blackjack = participant => {
-
-  return HAND[participant].cumulativeVal === BUST_LIMIT
-
-}
-
-
 const dealCardToPlayer = () => {
 
   const card = dealCard(PLAYER)
@@ -106,7 +35,7 @@ const dealCardToPlayer = () => {
   if (!initDeal) {
     
     handBusts(PLAYER) || blackjack(PLAYER) && dealCardToDealer()
-    
+
   }
 
 }
@@ -121,79 +50,13 @@ const dealCardToDealer = () => {
   if (!initDeal) {
     
     handBusts(DEALER) || dealerContinues() && dealCardToDealer()
-    
+
   }
 
 }
 
 
-const toggleSoftAce = participant => {
-
-  const newHand = []
-
-  let aceToggled = false
-
-  for (let card of HAND[participant].cards) {
-
-    if (!aceToggled && card.face && card.face === 'A' && card.value === 11) {
-
-      card.value = 1
-
-      aceToggled = true
-
-    }
-
-    newHand.push(card)
-
-  }
-
-  updateHand(participant)
-
-}
-
-
-const dealerContinuesOn17 = () => {
-
-  if (HAND[DEALER].aces) {
-
-    toggleSoftAce(DEALER)
-
-    return true
-
-  }
-
-  return false
-
-}
-
-
-const dealerContinues = () => {
-
-  const handVal = HAND[DEALER].cumulativeVal
-
-  if (blackjack(DEALER)) {
-
-    //game ends, dealer wins
-
-    return false
-
-  } else if (handVal > 17 && handVal < BUST_LIMIT) {
-
-    //dealer stands, determineWinner...
-
-    return false
-
-  } else if (handVal === 17) {
-
-    return dealerContinuesOn17()
-
-  }
-
-  return true
-
-}
-
-const endRound = () => {
+export const endRound = () => {
 
   console.log('END')
 
