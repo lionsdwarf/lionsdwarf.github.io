@@ -37,8 +37,44 @@ const dealCard = participant => {
     HAND[participant].soft = true
 
   }
+
+  return card
+
+}
+
+
+const dealCardToPlayer = () => {
+
+  const card = dealCard(PLAYER)
+
+  UIDeal.updateHand(PLAYER, card)
+
+  HAND[PLAYER].cumulativeVal === 21 && dealCardToDealer()
+
+  HAND[PLAYER].cumulativeVal > 21 && endRound()
+
+}
+
+
+const dealCardToDealer = () => {
+
+  const card = dealCard(DEALER)
   //show all cards except dealer's first
-  (participant === PLAYER || HAND[participant].cards.length > 1) && UIDeal.updateHand(participant, card)
+  HAND[DEALER].cards.length > 1 && UIDeal.updateHand(DEALER, card)
+
+  dealerContinues() && dealCardToDealer()
+
+}
+
+const dealerContinues = () => {
+
+  return false
+
+}
+
+const endRound = () => {
+
+
 
 }
 
@@ -47,14 +83,14 @@ export const dealGame = deck => {
 
   gameDeck = deck
 
-  dealCard(PLAYER)
+  dealCardToPlayer()
 
-  dealCard(DEALER)
+  dealCardToDealer()
 
-  dealCard(PLAYER)
+  dealCardToPlayer()
 
-  dealCard(DEALER)
+  dealCardToDealer()
 
 }
 
-export const hit = dealCard
+export const hit = dealCardToPlayer
