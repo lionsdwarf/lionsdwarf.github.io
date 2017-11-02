@@ -1,4 +1,4 @@
-import UI from './ui/'
+import UIDeal from './ui/Deal'
 
 let gameDeck
 
@@ -35,8 +35,8 @@ const dealCard = participant => {
     HAND[participant].soft = true
 
   }
-  //do not reveal first dealer card
-  (participant === 'player' || HAND[participant].cards.length > 1) && UI.updateHand(participant, card)
+  //show all cards except dealer's first
+  (participant === 'player' || HAND[participant].cards.length > 1) && UIDeal.updateHand(participant, card)
 
 }
 
@@ -56,3 +56,5 @@ export const dealGame = deck => {
   console.log('hands', HAND)
 
 }
+
+export const hit = dealCard
