@@ -1,3 +1,5 @@
+import UI from './ui/'
+
 let gameDeck
 
 const clearHand = () => {
@@ -21,7 +23,7 @@ let HAND = {
 }
 
 const dealCard = participant => {
-
+  //select card, remove it from deck
   const card = gameDeck.splice(0, 1)[0]
   //add card to hand
   HAND[participant].cards.push(card)
@@ -33,6 +35,8 @@ const dealCard = participant => {
     HAND[participant].soft = true
 
   }
+  //do not reveal first dealer card
+  (participant === 'player' || HAND[participant].cards.length > 1) && UI.updateHand(participant, card)
 
 }
 
@@ -49,6 +53,6 @@ export const dealGame = deck => {
 
   dealCard('dealer')
 
-  console.log('h', HAND)
+  console.log('hands', HAND)
 
 }
