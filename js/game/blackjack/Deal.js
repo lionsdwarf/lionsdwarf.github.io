@@ -4,6 +4,8 @@ import { PLAYER, DEALER } from './constants'
 
 let gameDeck
 
+let initDeal = true
+
 const BUST_LIMIT = 21
 
 const clearHand = () => {
@@ -67,8 +69,6 @@ const dealCard = participant => {
 
 const handBusts = participant => {
 
-  //add soft logic//
-
   if (HAND[participant].cumulativeVal > BUST_LIMIT) {
 
     if (HAND[participant].aces) {
@@ -103,7 +103,11 @@ const dealCardToPlayer = () => {
 
   UIDeal.updateHand(PLAYER, card)
   
-  handBusts(PLAYER) || blackjack(PLAYER) && dealCardToDealer()
+  if (!initDeal) {
+    
+    handBusts(PLAYER) || blackjack(PLAYER) && dealCardToDealer()
+    
+  }
 
 }
 
@@ -114,7 +118,11 @@ const dealCardToDealer = () => {
   //show all cards except dealer's first
   HAND[DEALER].cards.length > 1 && UIDeal.updateHand(DEALER, card)
 
-  handBusts(DEALER) || dealerContinues() && dealCardToDealer()
+  if (!initDeal) {
+    
+    handBusts(DEALER) || dealerContinues() && dealCardToDealer()
+    
+  }
 
 }
 
@@ -185,11 +193,11 @@ const dealerContinues = () => {
 
 }
 
-// const endRound = () => {
+const endRound = () => {
 
+  console.log('END')
 
-
-// }
+}
 
 
 export const dealGame = deck => {
@@ -203,6 +211,8 @@ export const dealGame = deck => {
   dealCardToPlayer()
 
   dealCardToDealer()
+
+  initDeal = false
 
 }
 
