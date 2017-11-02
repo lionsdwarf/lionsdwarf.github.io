@@ -1,26 +1,23 @@
+import {
 
-const FACE_VALUE = 10
+  FACE_VALUE,
 
-const ACE_VALUE = 11
+  ACE_VALUE,
 
-const CARD = {
+  CARD,
 
-  suit: [ 'S', 'H', 'D', 'C' ],
-
-  value: [ 2, 3, 4, 5, 6, 7, 8, 9, 10, 'J', 'Q', 'K', 'A' ],
-
-}
+} from './constants'
 
 
 const buildCardVals = () => {
 
-  return CARD.value.map(
-    //if face or ace card, include it's value
-    cardVal => typeof(cardVal) === 'number' ?
+  return CARD.title.map(
+    //if face or ace card, include it's value. otherwise value is equal to title.
+    cardTitle => typeof(cardTitle) === 'number' ?
         
       {
 
-        value: cardVal,
+        value: cardTitle,
 
       }
 
@@ -28,9 +25,9 @@ const buildCardVals = () => {
 
       {
 
-        value: cardVal === 'A' ? ACE_VALUE : FACE_VALUE,
+        value: cardTitle === 'A' ? ACE_VALUE : FACE_VALUE,
 
-        face: cardVal,
+        face: cardTitle,
 
       }
 

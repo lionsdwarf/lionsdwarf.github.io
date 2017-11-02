@@ -1,5 +1,7 @@
 import UIDeal from './ui/Deal'
 
+import { PLAYER, DEALER } from './constants'
+
 let gameDeck
 
 const clearHand = () => {
@@ -36,7 +38,7 @@ const dealCard = participant => {
 
   }
   //show all cards except dealer's first
-  (participant === 'player' || HAND[participant].cards.length > 1) && UIDeal.updateHand(participant, card)
+  (participant === PLAYER || HAND[participant].cards.length > 1) && UIDeal.updateHand(participant, card)
 
 }
 
@@ -45,15 +47,13 @@ export const dealGame = deck => {
 
   gameDeck = deck
 
-  dealCard('player')
+  dealCard(PLAYER)
 
-  dealCard('dealer')
+  dealCard(DEALER)
 
-  dealCard('player')
+  dealCard(PLAYER)
 
-  dealCard('dealer')
-
-  console.log('hands', HAND)
+  dealCard(DEALER)
 
 }
 
