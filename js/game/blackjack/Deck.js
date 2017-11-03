@@ -1,12 +1,55 @@
-import {
+import { FACE_VALUE, ACE_VALUE, CARD, ACE, } from './constants'
 
-  FACE_VALUE,
 
-  ACE_VALUE,
+export default class Deck {
 
-  CARD,
+  constructor() {
 
-} from './constants'
+    this.cards = generateShuffledDeck()
+
+  }
+
+
+  drawCard() {
+
+    return this.cards.splice(0, 1)[0]
+
+  }
+
+}
+
+
+const generateShuffledDeck = () => {
+
+  const cardVals = buildCardVals()
+
+  const deck = buildDeck(cardVals)
+
+  return shuffleDeck(deck)
+
+}
+
+
+const shuffleDeck = (deck) => {
+
+  let shuffledDeck = []
+
+  let unshuffledCount = deck.length
+
+  let selectedIndex
+
+  while (unshuffledCount) {
+
+    selectedIndex = Math.floor(Math.random() * unshuffledCount--)
+
+    shuffledDeck.push(deck.splice(selectedIndex, 1)[0])
+
+  }
+
+  return shuffledDeck
+
+}
+
 
 
 const buildCardVals = () => {
@@ -25,7 +68,7 @@ const buildCardVals = () => {
 
       {
 
-        value: cardTitle === 'A' ? ACE_VALUE.high : FACE_VALUE,
+        value: cardTitle === ACE ? ACE_VALUE.high : FACE_VALUE,
 
         face: cardTitle,
 
@@ -59,37 +102,5 @@ const buildDeck = cardVals => {
   }
 
   return deck
-
-}
-
-
-const shuffleDeck = (deck) => {
-
-  let shuffledDeck = []
-
-  let unshuffledCount = deck.length
-
-  let selectedIndex
-
-  while (unshuffledCount) {
-
-    selectedIndex = Math.floor(Math.random() * unshuffledCount--)
-
-    shuffledDeck.push(deck.splice(selectedIndex, 1)[0])
-
-  }
-
-  return shuffledDeck
-
-}
-
-
-export const generateShuffledDeck = () => {
-
-  const cardVals = buildCardVals()
-
-  const deck = buildDeck(cardVals)
-
-  return shuffleDeck(deck)
 
 }
