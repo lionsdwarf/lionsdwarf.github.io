@@ -4,7 +4,7 @@ import Deck from './Deck'
 
 import Hand from './Hand'
 
-import UICards from './ui/Cards'
+import UIHands from './ui/Hands'
 
 import UIButtons from './ui/Buttons'
 
@@ -18,21 +18,17 @@ export default class Game {
 
     this.deck = new Deck()
 
-    this.hands = {
-
-      player: new Hand(PLAYER),
-
-      dealer: new Hand(DEALER),
-
-    }
+    this.hands = clearHands()
 
   }
 
 
   deal() {
-    //buttons: enable hit/stand, disable deal
-    UIButtons.toggleActions()
-    
+
+    renderNewRound()
+
+    this.hands = clearHands()
+
     for (var i = 0; i < 2; i++) {
 
       for (let participant of GAME_PARTICIPANTS) {
@@ -51,8 +47,8 @@ export default class Game {
     const card = this.deck.drawCard()
     //add card to hand
     this.hands[participant].setCard(card)
-    //if not first dealer Card, reveal it
-    !firstDealerCard(participant, this.hands[participant].cards) && UICards.updateHand(participant, card)
+//isFirstDealerCard(participant, this.hands[participant].cards)
+    UIHands.update(participant, card)
 
     participant === DEALER && this.hands[participant].setStand()
 
@@ -65,7 +61,7 @@ export default class Game {
 
     if (dealerShouldPlay(this.hands)) {
 
-      participant === PLAYER && dealerUI(this.hands[DEALER].cards[0])
+      participant === PLAYER && renderDealerUI(this.hands[DEALER].cards[0])
 
       this.dealCard(DEALER)
 
@@ -91,28 +87,56 @@ const playerFinished = hands => hands[PLAYER].blackjack || hands[PLAYER].stand
 
 const dealerShouldPlay = hands => !hands[DEALER].blackjack && !hands[DEALER].stand && playerFinished(hands)
 
-const firstDealerCard = (participant, cards) => participant === DEALER && cards.length === 1
+const isFirstDealerCard = (participant, cards) => participant === DEALER && cards.length === 1
 
 const gameOver = hands => hands[DEALER].bust || hands[PLAYER].bust || (hands[PLAYER].stand || hands[PLAYER].blackjack) && (hands[DEALER].stand || hands[DEALER].blackjack)
 
 const determineVictor = hands => hands[DEALER].bust || (!hands[PLAYER].bust && hands[PLAYER].cumulativeVal > hands[DEALER].cumulativeVal) ? PLAYER : DEALER
 
-//util
-const dealerUI = firstDealerCard => {
+//UI util
+const renderDealerUI = firstDealerCard => {
 
-  UIButtons.toggleActions()
+  UIButtons.toggleState()
 
-  UICards.revealDealerHand(firstDealerCard)
+  UIHands.revealDealer(firstDealerCard)
+
+}
+
+const renderNewRound = () => {
+
+  UIButtons.toggleState()
+
+  UIHands.clear()
 
 }
 
 
 const declareVictor = (hands) => {
 
-  dealerUI(hands[DEALER].cards[0])
+  renderDealerUI(hands[DEALER].cards[0])
   
   console.log('victor: ', determineVictor(hands))
 
   return determineVictor(hands)
+
+}
+
+
+// const getNewHand = participant => new Hand(participant)
+
+
+const clearHands = () => {
+
+  return {
+
+    // player: getNewHand(PLAYER),
+
+    // dealer: getNewHand(PLAYER),
+
+    player: new Hand(PLAYER),
+
+    dealer: new Hand(PLAYER),
+
+  }
 
 }

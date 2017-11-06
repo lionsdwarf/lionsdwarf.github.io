@@ -33,7 +33,7 @@ const initDeal = () => {
 }
 
 
-const toggleActions = () => {
+const toggleState = () => {
 
   for (let prop in buttons) {
 
@@ -61,6 +61,6 @@ export default {
 
   initListeners: initListeners,
 
-  toggleActions: toggleActions,
+  toggleState: toggleState,
 
 }
