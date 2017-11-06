@@ -6,6 +6,8 @@ export const ACE = 'A'
 
 export const GAME_PARTICIPANTS = [PLAYER, DEALER]
 
+export const ROUNDS_BEFORE_SHUFFLE = 6
+
 export const FACE_VALUE = 10
 
 export const BUST_LIMIT = 21
