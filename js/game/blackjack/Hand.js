@@ -55,13 +55,18 @@ export default class Hand {
 //logic
 const bustWithoutToggle = cumulativeVal => cumulativeVal > BUST_LIMIT
 
+
 const hasBlackjack = cumulativeVal => cumulativeVal === BUST_LIMIT
 
+
 const didBust = cumulativeVal => cumulativeVal > BUST_LIMIT
+
 //participant specific logic
 const shouldStandDealer = cumulativeVal => cumulativeVal < BUST_LIMIT && cumulativeVal >= DEALER_STAND_MIN
 
+
 const shouldToggleAceDealer = cumulativeVal => bustWithoutToggle(cumulativeVal) || cumulativeVal === DEALER_STAND_MIN
+
 
 const shouldStandPlayer = () => true
 

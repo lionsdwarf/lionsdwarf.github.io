@@ -20,16 +20,26 @@ export default class Game {
 
     this.hands = clearHands()
 
-    this.roundCount = 0
+    this.roundCountSinceShuffle = 0
+
+    this.playerVictoryPercentage = null
+
+    this.victoryCount = {
+
+      player: 0,
+
+      dealer: 0,
+
+    }
 
   }
 
 
   deal() {
 
-    this.roundCount++
+    this.roundCountSinceShuffle++
     
-    this.roundCount === ROUNDS_BEFORE_SHUFFLE && this.shuffleDeck()
+    this.roundCountSinceShuffle === ROUNDS_BEFORE_SHUFFLE && this.shuffleDeck()
 
     renderNewRound()
 
@@ -87,9 +97,13 @@ export default class Game {
 
   declareVictor() {
 
+    const victor = determineVictor(this.hands)
+    
     renderDealerUI(this.hands[DEALER].cards[0])
-  
-    console.log('victor: ', determineVictor(this.hands))
+
+    console.log('victor: ', victor)
+
+    this.victoryCount[victor] += 1
 
   }
 
@@ -98,7 +112,7 @@ export default class Game {
 
     this.deck = new Deck()
 
-    this.roundCount = 0
+    this.roundCountSinceShuffle = 0
 
   }
 
@@ -108,15 +122,19 @@ export default class Game {
 //logic
 const isPlayerFinished = hands => hands[PLAYER].blackjack || hands[PLAYER].stand
 
+
 const shouldDealerPlay = hands => !hands[DEALER].blackjack && !hands[DEALER].stand && isPlayerFinished(hands)
+
 
 const isFirstDealerCard = (participant, cards) => participant === DEALER && cards.length === 1
 
+
 const isGameOver = hands => hands[DEALER].bust || hands[PLAYER].bust || (hands[PLAYER].stand || hands[PLAYER].blackjack) && (hands[DEALER].stand || hands[DEALER].blackjack)
+
 //returns string
 const determineVictor = hands => hands[DEALER].bust || (!hands[PLAYER].bust && hands[PLAYER].cumulativeVal > hands[DEALER].cumulativeVal) ? PLAYER : DEALER
 
-//UI util
+//UI utils
 const renderDealerUI = firstDealerCard => {
 
   UIButtons.toggleState()
@@ -141,7 +159,7 @@ const clearHands = () => {
 
     player: new Hand(PLAYER),
 
-    dealer: new Hand(PLAYER),
+    dealer: new Hand(DEALER),
 
   }
 
