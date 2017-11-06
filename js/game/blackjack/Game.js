@@ -26,13 +26,13 @@ export default class Game {
 
     }
 
-    this.deal()
-
   }
 
 
   deal() {
-
+    //buttons: enable hit/stand, disable deal
+    UIButtons.toggleActions()
+    
     for (var i = 0; i < 2; i++) {
 
       for (let participant of GAME_PARTICIPANTS) {
@@ -100,7 +100,7 @@ const determineVictor = hands => hands[DEALER].bust || (!hands[PLAYER].bust && h
 //util
 const dealerUI = firstDealerCard => {
 
-  UIButtons.disable()
+  UIButtons.toggleActions()
 
   UICards.revealDealerHand(firstDealerCard)
 

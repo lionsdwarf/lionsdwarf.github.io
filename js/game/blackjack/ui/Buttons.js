@@ -8,6 +8,8 @@ export const buttons = {
 
   stand: document.getElementById('stand'),
 
+  deal: document.getElementById('deal'),
+
 }
 
 const initHit = () => {
@@ -24,11 +26,20 @@ const initStand = () => {
 }
 
 
-const disable = () => {
+const initDeal = () => {
 
-  buttons.hit.disabled = true
+  buttons.deal.onclick = () => Game.deal()
 
-  buttons.stand.disabled = true
+}
+
+
+const toggleActions = () => {
+
+  for (let prop in buttons) {
+
+    buttons[prop].disabled = !buttons[prop].disabled
+
+  }
 
 }
 
@@ -41,6 +52,8 @@ const initListeners = (game) => {
 
   initStand()
 
+  initDeal()
+
 }
 
 
@@ -48,6 +61,6 @@ export default {
 
   initListeners: initListeners,
 
-  disable: disable,
+  toggleActions: toggleActions,
 
 }
