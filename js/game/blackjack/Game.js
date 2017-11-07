@@ -4,7 +4,7 @@ import Deck from './Deck'
 
 import Hand from './Hand'
 
-import UIHands from './ui/Hands'
+import UIHand from './ui/Hands'
 
 import UIButtons from './ui/Buttons'
 
@@ -59,12 +59,12 @@ export default class Game {
 
   
   dealCard(participant) {
-    //select card, remove it from deck
+
     const card = this.deck.drawCard()
-    //add card to hand
+
     this.hands[participant].setCard(card)
 
-    UIHands.update(participant, card)
+    UIHand.update(participant, card)
 
     participant === DEALER && this.hands[participant].setStand()
 
@@ -139,7 +139,7 @@ const renderDealerUI = firstDealerCard => {
 
   UIButtons.toggleState()
 
-  UIHands.revealDealer(firstDealerCard)
+  UIHand.revealDealer(firstDealerCard)
 
 }
 
@@ -148,7 +148,7 @@ const renderNewRound = () => {
 
   UIButtons.toggleState()
 
-  UIHands.clear()
+  UIHand.clear()
 
 }
 
