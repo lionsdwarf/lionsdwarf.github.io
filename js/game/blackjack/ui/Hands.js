@@ -6,6 +6,8 @@ const constructCardVal = card => {
 
   val.innerHTML = card.face ? card.face : card.value
 
+  val.className += ' suit' + card.suit
+
   return val
 
 }
@@ -16,7 +18,9 @@ const buildCardFaceUp = (card, cardNum) => {
 
   cardEl.append(constructCardVal(card))
 
-  cardEl.className += 'card suit' + card.suit
+  cardEl.append(constructCardVal(card))
+
+  cardEl.className += ' card'
 
   cardEl.style.left = '-' + CSS_CARD_OFFSET * cardNum + 'px'
 
