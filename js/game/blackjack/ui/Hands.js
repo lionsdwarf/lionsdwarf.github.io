@@ -1,8 +1,12 @@
 import { DEALER, CSS_CARD_OFFSET } from '../constants'
 
-const constructCardHTML = card => {
+const constructCardVal = card => {
 
-  return card.face ? card.face : card.value
+  const val = document.createElement('div')
+
+  val.innerHTML = card.face ? card.face : card.value
+
+  return val
 
 }
 
@@ -10,7 +14,7 @@ const buildCardFaceUp = (card, cardNum) => {
 
   const cardEl = document.createElement('li')
 
-  cardEl.innerHTML = constructCardHTML(card)
+  cardEl.append(constructCardVal(card))
 
   cardEl.className += 'card suit' + card.suit
 
@@ -47,7 +51,7 @@ const update = (participant, card, cardNum) => {
 
 const clear = () => {
 
-  const hands = document.querySelectorAll('#hands ul')
+  const hands = document.querySelectorAll('#hands ol')
 
   for (let hand of hands) {
     
@@ -62,7 +66,7 @@ const revealDealer = (card) => {
 
   const handEl = document.querySelector('.faceDown')
 
-  handEl.innerHTML = constructCardHTML(card)
+  handEl.innerHTML = constructCardVal(card)
 
 }
 

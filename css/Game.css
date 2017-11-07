@@ -15,7 +15,8 @@ ol {
 #player {
   position: absolute;
   bottom: 75px;
-  transform: translate(75%);
+  left: 300px;
+  width: 100%;
 }
 
 
@@ -29,6 +30,13 @@ ol {
   border-radius: 10px;
   background: rgba(231,228,223,1);
   border: 1px solid grey;
+}
+
+.card div {
+  top: 40px;
+  left: 10px;
+  position: relative;
+  font-size: 30px;
 }
 
 .suitdiamonds:before, .suitdiamonds:after {
