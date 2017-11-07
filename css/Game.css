@@ -6,8 +6,8 @@ body {
 }
 
 
-/*hands*/
 
+/*hands*/
 main {
   display: flex;
   flex-direction: column;
@@ -18,24 +18,34 @@ ol {
   list-style-type: none;
 }
 
-#player {
+main ol {
   position: absolute;
-  bottom: 40px;
   left: 25%;
   width: 100%;
+
 }
+
+#player {
+  bottom: 40px;
+}
+
 
 
 /*cards*/
 .card {
   position: relative;
   float: left;
-  margin-right: 10px;
   width: 150px;
-  height: 220px;
+  height: 208px;
   border-radius: 6px;
   background: rgba(231,228,223,1);
   border: 1px solid grey;
+}
+
+.faceDown {
+  /*card image taken from http://chetart.com/blog/*/
+  background-image: url('../public/playing-card-back.jpg');
+  background-size: contain;
 }
 
 .card div {
@@ -44,6 +54,7 @@ ol {
   position: relative;
   font-size: 30px;
 }
+
 .card div:nth-child(2) {
   transform: rotate(180deg);
   position: absolute;

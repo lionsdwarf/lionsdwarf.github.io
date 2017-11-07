@@ -14,7 +14,7 @@ export const BUST_LIMIT = 21
 
 export const DEALER_STAND_MIN = 17
 
-export const CSS_CARD_OFFSET = 110
+export const CSS_CARD_OFFSET = 100
 
 export const ACE_VALUE = {
 

@@ -1,5 +1,12 @@
 import { DEALER, CSS_CARD_OFFSET } from '../constants'
 
+const calcCardDisplayOffset = cardNum => {
+  //number of pixels card gets shifted, to display it's value
+  return '-' + CSS_CARD_OFFSET * cardNum + 'px'
+
+}
+
+
 const constructCardVal = card => {
 
   const val = document.createElement('div')
@@ -22,7 +29,7 @@ const buildCardFaceUp = (card, cardNum) => {
 
   cardEl.className += ' card'
 
-  cardEl.style.left = '-' + CSS_CARD_OFFSET * cardNum + 'px'
+  cardEl.style.left = calcCardDisplayOffset(cardNum)
 
   return cardEl
 
@@ -33,9 +40,7 @@ const buildCardFaceDown = () => {
 
   const cardEl = document.createElement('li')
 
-  cardEl.innerHTML = 'static'
-
-  cardEl.className += 'faceDown'
+  cardEl.className += 'card faceDown'
 
   return cardEl
 
@@ -68,9 +73,15 @@ const clear = () => {
 
 const revealDealer = (card) => {
 
-  const handEl = document.querySelector('.faceDown')
+  const cardEl = document.querySelector('.faceDown')
 
-  handEl.innerHTML = constructCardVal(card)
+  cardEl.classList.remove('faceDown')
+
+  cardEl.append(constructCardVal(card))
+
+  cardEl.append(constructCardVal(card))
+
+  // cardEl.innerHTML = constructCardVal(card)
 
 }
 
