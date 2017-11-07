@@ -13,23 +13,15 @@ const calcVictoryRate = victories => {
 }
 
 
-const updateVictoryRate = rate => {
+const updateVictoryRate = (victor, victories) => {
 
-  victoryRateEl.innerHTML = rate + ' % win-rate'
-
-}
-
-
-const update = (victor, victories) => {
-
-  // declareVictor(victor)
-
-  updateVictoryRate(calcVictoryRate(victories))
+  victoryRateEl.innerHTML = calcVictoryRate(victories) + ' % win-rate'
 
 }
+
 
 export default {
 
-  update: update
+  update: updateVictoryRate,
 
 }

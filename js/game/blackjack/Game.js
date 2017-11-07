@@ -43,7 +43,7 @@ export default class Game {
 
     this.roundsSinceShuffle++
 
-    renderNewRound()
+    renderNewRound(this.victor)
 
     this.hands = clearHands()
 
@@ -100,6 +100,8 @@ export default class Game {
   declareVictor() {
 
     const victor = determineVictor(this.hands)
+
+    this.victor = victor
     
     renderDealerUI(this.hands[DEALER].cards[0])
 
@@ -113,9 +115,9 @@ export default class Game {
 
     this.victoryCount[victor] += 1
 
-    UIStats.update(victor, this.victoryCount)
+    UIHand.declareVictor(victor)
 
-    console.log('victor: ', victor)
+    UIStats.update(victor, this.victoryCount)
 
   }
 
@@ -159,11 +161,11 @@ const renderDealerUI = firstDealerCard => {
 }
 
 
-const renderNewRound = () => {
+const renderNewRound = victor => {
 
   UIButtons.toggleState()
 
-  UIHand.clear()
+  UIHand.clear(victor)
 
 }
 
