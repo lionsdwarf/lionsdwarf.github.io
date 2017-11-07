@@ -1,16 +1,20 @@
-import { DEALER } from '../constants'
+import { DEALER, CSS_CARD_OFFSET } from '../constants'
 
 const constructCardHTML = card => {
 
-  return (card.face ? card.face : card.value) + card.suit
+  return card.face ? card.face : card.value
 
 }
 
-const buildCardFaceUp = card => {
+const buildCardFaceUp = (card, cardNum) => {
 
   const cardEl = document.createElement('li')
 
   cardEl.innerHTML = constructCardHTML(card)
+
+  cardEl.className += 'card suit' + card.suit
+
+  cardEl.style.left = '-' + CSS_CARD_OFFSET * cardNum + 'px'
 
   return cardEl
 
@@ -30,11 +34,11 @@ const buildCardFaceDown = () => {
 }
 
 
-const update = (participant, card) => {
+const update = (participant, card, cardNum) => {
 
   const handEl = document.querySelector('#hands #' + participant)
   //if card is dealer's first, it's face down--do not reveal yet
-  const cardEl = participant === DEALER && !handEl.children.length ? buildCardFaceDown() : buildCardFaceUp(card)
+  const cardEl = participant === DEALER && !handEl.children.length ? buildCardFaceDown() : buildCardFaceUp(card, cardNum)
 
   handEl.append(cardEl)
 

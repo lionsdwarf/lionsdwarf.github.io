@@ -14,6 +14,8 @@ export const BUST_LIMIT = 21
 
 export const DEALER_STAND_MIN = 17
 
+export const CSS_CARD_OFFSET = 120
+
 export const ACE_VALUE = {
 
   high: 11,
@@ -22,11 +24,11 @@ export const ACE_VALUE = {
 
 }
 
-export const CARD = {
+export const CARD_PROPS = {
 
   title: [ 2, 3, 4, 5, 6, 7, 8, 9, 10, 'J', 'Q', 'K', 'A' ],
 
-  suit: [ 'S', 'H', 'D', 'C' ],
+  suit: [ 'spades', 'hearts', 'diamonds', 'clubs' ],
 
 }
 

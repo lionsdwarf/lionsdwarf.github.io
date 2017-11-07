@@ -4,30 +4,39 @@
   
   <head>
 
+    <meta charset="utf-8">
+
     <title>blackjack</title>
+
+    <link rel="stylesheet" type="text/css" href="./css/Game.css">
 
   </head>
 
 
   <body>
 
-    <div id="hands">
+    <aside>
+
+      <div>Winning against Dealer:</div>
+
+      <div id="victoryPercentage"></div>
       
-      <ul id="dealer"></ul>
+      <button id="hit" disabled>HIT</button> 
 
-      <ul id="player"></ul>
+      <button id="stand" disabled>STAND</button>
 
-    </div>
+      <button id="deal">DEAL</button> 
 
-    <div>Winning against Dealer:</div>
+    </aside>
 
-    <div id="victoryPercentage"></div>
-    
-    <button id="hit" disabled>HIT</button> 
+    <main id="hands">
+      
+      <ol id="dealer"></ol>
 
-    <button id="stand" disabled>STAND</button>
+      <ol id="player" class="spread"></ol>
 
-    <button id="deal">DEAL</button> 
+    </main>
+
 
   </body>
 

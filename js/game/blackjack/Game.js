@@ -64,7 +64,7 @@ export default class Game {
 
     this.hands[participant].setCard(card)
 
-    UIHand.update(participant, card)
+    UIHand.update(participant, card, this.hands[participant].cards.length - 1)
 
     participant === DEALER && this.hands[participant].setStand()
 

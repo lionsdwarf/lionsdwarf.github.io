@@ -1,4 +1,4 @@
-import { FACE_VALUE, ACE_VALUE, CARD, ACE, } from './constants'
+import { FACE_VALUE, ACE_VALUE, CARD_PROPS, ACE, } from './constants'
 
 
 export default class Deck {
@@ -54,7 +54,7 @@ const shuffleDeck = (deck) => {
 
 const buildCardVals = () => {
 
-  return CARD.title.map(
+  return CARD_PROPS.title.map(
     //if face or ace card, include it's value. otherwise value is equal to title.
     cardTitle => typeof(cardTitle) === 'number' ?
         
@@ -87,7 +87,7 @@ const buildDeck = cardVals => {
 
   for (let cardVal of cardVals) {
 
-    for (let suit of CARD.suit) {
+    for (let suit of CARD_PROPS.suit) {
 
       deck.push({
 
