@@ -1,3 +1,9 @@
+:root {
+  --cream-rgb: 231,228,223;
+  --card-val-offset-horizontal: 10px;
+  --card-val-offset-vertical: 7px;
+}
+
 /*table*/
 body {
   background-image: url('../public/table.jpeg');
@@ -38,7 +44,7 @@ main ol {
   width: 150px;
   height: 208px;
   border-radius: 6px;
-  background: rgba(231,228,223,1);
+  background: rgba(var(--cream-rgb),1);
   border: 1px solid grey;
 }
 
@@ -49,18 +55,17 @@ main ol {
 }
 
 .card div {
-  top: 7px;
-  left: 10px;
+  top: var(--card-val-offset-vertical);
+  left: var(--card-val-offset-horizontal);
   position: relative;
   font-size: 30px;
 }
 
 .card div:nth-child(2) {
+  bottom: var(--card-val-offset-vertical);
+  right: var(--card-val-offset-horizontal);
   transform: rotate(180deg);
   position: absolute;
-  /*scss variables would be more maintainable*/
-  bottom: 7px;
-  right: 10px;
 }
 
 .suitdiamonds, .suithears {
@@ -86,4 +91,26 @@ main ol {
 div[class*='suit']:before {
   position: absolute;
   top: 33px;
+}
+
+
+/*buttons*/
+button {
+  border: none;
+  padding: 20px;
+  width: 100px;
+  border-radius: 5px;
+  background-color: rgba(var(--cream-rgb),0.6);
+  font-size: 16px;
+  margin: 4px 12px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: rgba(var(--cream-rgb),1);
+}
+
+#deal {
+  width: 224px;
+  color: black;
 }
