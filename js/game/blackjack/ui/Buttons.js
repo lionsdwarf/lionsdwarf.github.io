@@ -38,6 +38,8 @@ const toggleState = () => {
   for (let prop in buttons) {
 
     buttons[prop].disabled = !buttons[prop].disabled
+    //toggle css 'display' prop to show and hide buttons based on disabled state
+    buttons[prop].style.display = !buttons[prop].disabled ? '' : 'none'
 
   }
 
