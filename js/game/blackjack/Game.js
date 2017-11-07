@@ -6,6 +6,8 @@ import Hand from './Hand'
 
 import UIHand from './ui/Hands'
 
+import UIStats from './ui/Stats'
+
 import UIButtons from './ui/Buttons'
 
 
@@ -109,9 +111,11 @@ export default class Game {
 
     }
 
-    console.log('victor: ', victor)
-
     this.victoryCount[victor] += 1
+
+    UIStats.update(victor, this.victoryCount)
+
+    console.log('victor: ', victor)
 
   }
 

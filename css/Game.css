@@ -1,26 +1,24 @@
+/*variables*/
 :root {
   --cream-rgb: 231,228,223;
   --card-val-offset-horizontal: 10px;
   --card-val-offset-vertical: 7px;
 }
 
-/*table*/
+/*screen*/
 body {
   background-image: url('../public/table.jpeg');
   background-size: cover;
   background-repeat: no-repeat;
 }
 
-/*user constrols & stats*/
 footer {
   text-align: center;
   font-family: 'Lato', sans-serif;
   color: rgba(var(--cream-rgb),1);
+  margin-top: 25px;
 }
 
-.button-container {
-  height: 65px;
-}
 
 
 /*hands*/
@@ -30,19 +28,16 @@ main {
   height: 545px;
 }
 
-ol {
-  list-style-type: none;
-}
-
 main ol {
+  list-style-type: none;
   position: absolute;
   left: 25%;
   width: 100%;
-
+  top: 50px;
 }
 
 #player {
-  bottom: 135px;
+  top: 315px;
 }
 
 
@@ -140,4 +135,10 @@ button:hover {
 #deal:hover {
   background-color: rgba(var(--cream-rgb),0.5);
   border-color: rgba(var(--cream-rgb),1);
+}
+
+
+/*stats*/
+#victory-rate {
+  margin-top: 20px;
 }
