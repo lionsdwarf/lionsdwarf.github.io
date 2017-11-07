@@ -12,6 +12,14 @@ export const buttons = {
 
 }
 
+
+const setTextDeal = text => {
+
+  buttons.deal.innerHTML = text
+
+}
+
+
 const initHit = () => {
 
   buttons.hit.onclick = () => Game.dealCard(PLAYER)
@@ -28,27 +36,37 @@ const initStand = () => {
 
 const initDeal = () => {
 
-  buttons.deal.onclick = () => Game.deal()
+  buttons.deal.onclick = () => Game.dealHands()
 
 }
 
 
-const toggleState = () => {
+const updateHitStand = bool => {
 
-  for (let prop in buttons) {
+  buttons.hit.disabled = !bool
 
-    buttons[prop].disabled = !buttons[prop].disabled
-    //toggle css 'display' prop to show and hide buttons based on disabled state
-    buttons[prop].style.display = !buttons[prop].disabled ? '' : 'none'
+  buttons.hit.style.display = bool ? '' : 'none'
 
-  }
+  buttons.stand.disabled = !bool
+  
+  buttons.stand.style.display = bool ? '' : 'none'
+  
+}
 
+const updateDeal = bool => {
+
+  buttons.deal.disabled = bool
+  
+  buttons.deal.style.display = bool ? 'none' : ''
+  
 }
 
 
-const setDealText = text => {
+const setState = bool => {
 
-  buttons.deal.innerHTML = text
+  updateHitStand(bool)
+
+  updateDeal(bool)
 
 }
 
@@ -70,8 +88,8 @@ export default {
 
   initListeners: initListeners,
 
-  toggleState: toggleState,
+  setHitStandState: setState,
 
-  setDealText: setDealText,
+  setTextDeal: setTextDeal,
 
 }

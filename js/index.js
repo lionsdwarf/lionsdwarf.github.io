@@ -1,3 +1,3 @@
-import Game from './game/blackjack/Game'
+import Game from './Game'
 
 window.onload = new Game()

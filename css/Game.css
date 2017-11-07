@@ -1,6 +1,6 @@
 /*variables*/
 :root {
-  --cream-rgb: 231,228,223;
+  --rgb-cream: 231,228,223;
   --card-val-offset-horizontal: 10px;
   --card-val-offset-vertical: 7px;
 }
@@ -15,7 +15,7 @@ body {
 footer {
   text-align: center;
   font-family: 'Lato', sans-serif;
-  color: rgba(var(--cream-rgb),1);
+  color: rgba(var(--rgb-cream),1);
   margin-top: 25px;
 }
 
@@ -49,7 +49,7 @@ main ol {
   width: 150px;
   height: 208px;
   border-radius: 6px;
-  background: rgba(var(--cream-rgb),1);
+  background: rgba(var(--rgb-cream),1);
   border: 1px solid grey;
 }
 
@@ -110,8 +110,8 @@ button {
   cursor: pointer;
   font-family: inherit;
   letter-spacing: 3px;
-  color: rgba(var(--cream-rgb),1);
-  background-color: rgba(var(--cream-rgb),0.3);
+  color: rgba(var(--rgb-cream),1);
+  background-color: rgba(var(--rgb-cream),0.3);
   border: 1px solid transparent;
 }
 
@@ -133,8 +133,8 @@ button:hover {
 }
 
 #deal:hover {
-  background-color: rgba(var(--cream-rgb),0.5);
-  border-color: rgba(var(--cream-rgb),1);
+  background-color: rgba(var(--rgb-cream),0.5);
+  border-color: rgba(var(--rgb-cream),1);
 }
 
 
