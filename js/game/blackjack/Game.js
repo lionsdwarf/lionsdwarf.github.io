@@ -70,16 +70,16 @@ export default class Game {
 
     participant === DEALER && this.hands[participant].setStand()
 
-    isGameOver(this.hands) ? this.declareVictor() : this.nextTurn(participant)
+    isGameOver(this.hands) ? this.declareVictor() : this.nextTurn(participant === PLAYER)
 
   }
 
 
-  nextTurn(participant) {
+  nextTurn(isDealersFirstTurn) {
 
     if (shouldDealerPlay(this.hands)) {
-
-      participant === PLAYER && renderDealerUI(this.hands[DEALER].cards[0])
+      //if participant is player, this is the dealer's first turn
+      isDealersFirstTurn && revealDealerHand(this.hands[DEALER].cards[0])
 
       this.dealCard(DEALER)
 
@@ -92,18 +92,16 @@ export default class Game {
 
     this.hands[PLAYER].setStand()
 
-    isGameOver(this.hands) ? this.declareVictor() : this.nextTurn(DEALER)
+    isGameOver(this.hands) ? this.declareVictor() : this.nextTurn(participant === PLAYER)
 
   }
 
 
   declareVictor() {
-
-    const victor = determineVictor(this.hands)
-
-    this.victor = victor
+    this.hands[PLAYER].blackjack && console.log('BLACKJACK')
+    this.victor = determineVictor(this.hands)
     
-    renderDealerUI(this.hands[DEALER].cards[0])
+    revealDealerHand(this.hands[DEALER].cards[0])
 
     if (shouldShuffle(this.roundsSinceShuffle)) {
 
@@ -113,11 +111,11 @@ export default class Game {
 
     }
 
-    this.victoryCount[victor] += 1
+    this.victoryCount[this.victor] += 1
 
-    UIHand.declareVictor(victor)
+    UIHand.declareVictor(this.victor)
 
-    UIStats.update(victor, this.victoryCount)
+    UIStats.update(this.victor, this.victoryCount)
 
   }
 
@@ -152,7 +150,7 @@ const shouldShuffle = roundsSinceShuffle => roundsSinceShuffle === ROUNDS_UNTIL_
 const determineVictor = hands => hands[DEALER].bust || (!hands[PLAYER].bust && hands[PLAYER].cumulativeVal > hands[DEALER].cumulativeVal) ? PLAYER : DEALER
 
 //UI utils
-const renderDealerUI = firstDealerCard => {
+const revealDealerHand = firstDealerCard => {
 
   UIButtons.toggleState()
 
