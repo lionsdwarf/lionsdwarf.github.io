@@ -10,24 +10,12 @@
 
     <link rel="stylesheet" type="text/css" href="./css/Game.css">
 
+    <link href="https://fonts.googleapis.com/css?family=Lato:100" rel="stylesheet">
+
   </head>
 
 
   <body>
-
-    <aside>
-
-      <div>Win rate:</div>
-
-      <div id="victoryPercentage"></div>
-      
-      <button id="hit" disabled>Hit</button> 
-
-      <button id="stand" disabled>Stand</button>
-
-      <button id="deal">Shuffle & Deal</button> 
-
-    </aside>
 
 
     <main id="hands">
@@ -37,6 +25,27 @@
       <ol id="player"></ol>
 
     </main>
+
+    <footer>
+
+
+      <div class="button-container">
+
+        <button id="stand" disabled>Stand</button>
+
+        <button id="hit" disabled>Hit</button> 
+
+        <button id="deal">Shuffle & Deal</button> 
+        
+      </div>
+      
+      <div>
+        
+        <span id="win-rate"></span><span>win rate</span>
+
+      </div>
+
+    </footer>
 
 
   </body>

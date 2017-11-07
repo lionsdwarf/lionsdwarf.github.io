@@ -11,13 +11,23 @@ body {
   background-repeat: no-repeat;
 }
 
+/*user constrols & stats*/
+footer {
+  text-align: center;
+  font-family: 'Lato', sans-serif;
+  color: rgba(var(--cream-rgb),1);
+}
+
+.button-container {
+  height: 65px;
+}
 
 
 /*hands*/
 main {
   display: flex;
   flex-direction: column;
-  height: 600px;
+  height: 545px;
 }
 
 ol {
@@ -32,7 +42,7 @@ main ol {
 }
 
 #player {
-  bottom: 40px;
+  bottom: 135px;
 }
 
 
@@ -100,17 +110,34 @@ button {
   padding: 20px;
   width: 100px;
   border-radius: 5px;
-  background-color: rgba(var(--cream-rgb),0.6);
   font-size: 16px;
   margin: 4px 12px;
   cursor: pointer;
+  font-family: inherit;
+  letter-spacing: 3px;
+  color: rgba(var(--cream-rgb),1);
+  background-color: rgba(var(--cream-rgb),0.3);
+  border: 1px solid transparent;
 }
 
 button:hover {
-  background-color: rgba(var(--cream-rgb),1);
+  border: 1px solid;
+}
+
+#hit:hover {
+  background-color: rgba(2, 140, 117, 0.1);
+}
+
+#stand:hover {
+  background-color: rgba(173, 102, 111, 0.8);
 }
 
 #deal {
   width: 224px;
-  color: black;
+  color: rgba(var(cream-rgbm),1);
+}
+
+#deal:hover {
+  background-color: rgba(var(--cream-rgb),0.5);
+  border-color: rgba(var(--cream-rgb),1);
 }
