@@ -1,4 +1,4 @@
-import { PLAYER, DEALER, INITIAL_CARDS_DEALT, GAME_PARTICIPANTS, ROUNDS_BEFORE_SHUFFLE } from './constants'
+import { PLAYER, DEALER, INITIAL_CARDS_DEALT, GAME_PARTICIPANTS, ROUNDS_UNTIL_SHUFFLE, DEAL, SHUFFLE_AND_DEAL } from './constants'
 
 import Deck from './Deck'
 
@@ -16,11 +16,7 @@ export default class Game {
 
     UIButtons.initListeners(this)
 
-    this.deck = new Deck()
-
     this.hands = clearHands()
-
-    this.roundCountSinceShuffle = 0
 
     this.playerVictoryPercentage = null
 
@@ -32,14 +28,18 @@ export default class Game {
 
     }
 
+    this.shuffleDeck()
+
+    this.deal()
+
   }
 
 
   deal() {
 
-    this.roundCountSinceShuffle++
-    
-    this.roundCountSinceShuffle === ROUNDS_BEFORE_SHUFFLE && this.shuffleDeck()
+    UIButtons.setDealText(DEAL)
+
+    this.roundsSinceShuffle++
 
     renderNewRound()
 
@@ -101,6 +101,14 @@ export default class Game {
     
     renderDealerUI(this.hands[DEALER].cards[0])
 
+    if (shouldShuffle(this.roundsSinceShuffle)) {
+
+      UIButtons.setDealText(SHUFFLE_AND_DEAL)
+
+      this.shuffleDeck()
+
+    }
+
     console.log('victor: ', victor)
 
     this.victoryCount[victor] += 1
@@ -109,10 +117,10 @@ export default class Game {
 
 
   shuffleDeck() {
+    
+    this.roundsSinceShuffle = 1
 
     this.deck = new Deck()
-
-    this.roundCountSinceShuffle = 0
 
   }
 
@@ -130,6 +138,9 @@ const isFirstDealerCard = (participant, cards) => participant === DEALER && card
 
 
 const isGameOver = hands => hands[DEALER].bust || hands[PLAYER].bust || (hands[PLAYER].stand || hands[PLAYER].blackjack) && (hands[DEALER].stand || hands[DEALER].blackjack)
+
+
+const shouldShuffle = roundsSinceShuffle => roundsSinceShuffle === ROUNDS_UNTIL_SHUFFLE
 
 //returns string
 const determineVictor = hands => hands[DEALER].bust || (!hands[PLAYER].bust && hands[PLAYER].cumulativeVal > hands[DEALER].cumulativeVal) ? PLAYER : DEALER

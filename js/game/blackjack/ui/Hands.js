@@ -75,14 +75,15 @@ const revealDealer = (card) => {
 
   const cardEl = document.querySelector('.faceDown')
 
-  cardEl.classList.remove('faceDown')
+  if (cardEl) {
+    
+    cardEl.classList.remove('faceDown')
 
-  cardEl.append(constructCardVal(card))
+    cardEl.append(constructCardVal(card))
 
-  cardEl.append(constructCardVal(card))
+    cardEl.append(constructCardVal(card))
 
-  // cardEl.innerHTML = constructCardVal(card)
-
+  }
 }
 
 

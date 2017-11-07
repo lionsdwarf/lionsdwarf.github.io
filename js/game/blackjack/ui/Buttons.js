@@ -44,6 +44,13 @@ const toggleState = () => {
 }
 
 
+const setDealText = text => {
+
+  buttons.deal.innerHTML = text
+
+}
+
+
 const initListeners = (game) => {
 
   Game = game
@@ -62,5 +69,7 @@ export default {
   initListeners: initListeners,
 
   toggleState: toggleState,
+
+  setDealText: setDealText,
 
 }
