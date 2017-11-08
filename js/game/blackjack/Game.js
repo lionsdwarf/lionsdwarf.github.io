@@ -32,12 +32,12 @@ export default class Game {
 
     this.shuffleDeck()
 
-    this.deal()
+    this.dealHands()
 
   }
 
 
-  deal() {
+  dealHands() {
 
     UIButtons.setDealText(DEAL)
 
@@ -50,7 +50,7 @@ export default class Game {
     for (var i = 0; i < 2; i++) {
 
       for (let participant of GAME_PARTICIPANTS) {
-        //if Player is dealt blackjack, nextTurn() method deals final Dealer card, so don't call it again.
+        //if Player is dealt blackjack, nextTurn() deals final Dealer card, so don't call it again.
         !this.hands[PLAYER].blackjack && this.dealCard(participant)
         
       }
@@ -69,6 +69,13 @@ export default class Game {
     UIHand.update(participant, card, this.hands[participant].cards.length - 1)
 
     participant === DEALER && this.hands[participant].setStand()
+
+    this.victoryCheck(participant)
+
+  }
+
+
+  victoryCheck(participant) {
 
     isGameOver(this.hands) ? this.declareVictor() : this.nextTurn(participant === PLAYER)
 
@@ -92,13 +99,13 @@ export default class Game {
 
     this.hands[PLAYER].setStand()
 
-    isGameOver(this.hands) ? this.declareVictor() : this.nextTurn(participant === PLAYER)
+    this.victoryCheck()
 
   }
 
 
   declareVictor() {
-    this.hands[PLAYER].blackjack && console.log('BLACKJACK')
+
     this.victor = determineVictor(this.hands)
     
     revealDealerHand(this.hands[DEALER].cards[0])
@@ -141,7 +148,7 @@ const shouldDealerPlay = hands => !hands[DEALER].blackjack && !hands[DEALER].sta
 const isFirstDealerCard = (participant, cards) => participant === DEALER && cards.length === 1
 
 
-const isGameOver = hands => hands[DEALER].bust || hands[PLAYER].bust || (hands[PLAYER].stand || hands[PLAYER].blackjack) && (hands[DEALER].stand || hands[DEALER].blackjack)
+const isGameOver = hands => hands[DEALER].blackjack || hands[DEALER].bust || hands[PLAYER].bust || hands[DEALER].stand && (hands[PLAYER].stand || hands[PLAYER].blackjack) 
 
 
 const shouldShuffle = roundsSinceShuffle => roundsSinceShuffle === ROUNDS_UNTIL_SHUFFLE
@@ -152,7 +159,7 @@ const determineVictor = hands => hands[DEALER].bust || (!hands[PLAYER].bust && h
 //UI utils
 const revealDealerHand = firstDealerCard => {
 
-  UIButtons.toggleState()
+  UIButtons.setHitStandState(false)
 
   UIHand.revealDealer(firstDealerCard)
 
@@ -161,7 +168,7 @@ const revealDealerHand = firstDealerCard => {
 
 const renderNewRound = victor => {
 
-  UIButtons.toggleState()
+  UIButtons.setHitStandState(true)
 
   UIHand.clear(victor)
 
