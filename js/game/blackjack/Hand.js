@@ -56,6 +56,9 @@ export default class Hand {
 const bustWithoutToggle = cumulativeVal => cumulativeVal > BUST_LIMIT
 
 
+const shouldToggleAceDealer = cumulativeVal => bustWithoutToggle(cumulativeVal) || cumulativeVal === DEALER_STAND_MIN
+
+
 const hasBlackjack = cumulativeVal => cumulativeVal === BUST_LIMIT
 
 
@@ -65,9 +68,6 @@ const didBust = cumulativeVal => cumulativeVal > BUST_LIMIT
 const shouldStandDealer = cumulativeVal => cumulativeVal < BUST_LIMIT && cumulativeVal >= DEALER_STAND_MIN
 
 
-const shouldToggleAceDealer = cumulativeVal => bustWithoutToggle(cumulativeVal) || cumulativeVal === DEALER_STAND_MIN
-
-
 const shouldStandPlayer = () => true
 
 //util
@@ -75,10 +75,10 @@ const toggleAce = cards => {
 
   const newHand = []
 
+  //if multiple aces in hand, only toggle 1
   let aceToggled = false
 
   for (let card of cards) {
-    //in case of multiple aces, only toggle 1
     if (!aceToggled && card.face && card.face === ACE && card.value === ACE_VALUE.high) {
 
       card.value = 1
@@ -112,11 +112,11 @@ const toggleableAce = cards => {
 
 }
 
-
+//accumulate value of cards in hand
 const calcCumulativeVal = cards => {
 
   let cumulativeVal = 0 
-  //accumulate value of cards in hand
+  
   for (let card of cards) {
   
     cumulativeVal += card.value

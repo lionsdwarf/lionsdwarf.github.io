@@ -13,7 +13,7 @@ export const buttons = {
 }
 
 
-const setDealText = text => {
+const setTextDeal = text => {
 
   buttons.deal.innerHTML = text
 
@@ -41,7 +41,7 @@ const initDeal = () => {
 }
 
 
-const updateHitStandButtons = bool => {
+const updateHitStand = bool => {
 
   buttons.hit.disabled = !bool
 
@@ -53,7 +53,7 @@ const updateHitStandButtons = bool => {
   
 }
 
-const updateDealButton = bool => {
+const updateDeal = bool => {
 
   buttons.deal.disabled = bool
   
@@ -64,9 +64,9 @@ const updateDealButton = bool => {
 
 const setState = bool => {
 
-  updateHitStandButtons(bool)
+  updateHitStand(bool)
 
-  updateDealButton(bool)
+  updateDeal(bool)
 
 }
 
@@ -90,6 +90,6 @@ export default {
 
   setHitStandState: setState,
 
-  setDealText: setDealText,
+  setTextDeal: setTextDeal,
 
 }

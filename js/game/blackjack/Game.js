@@ -18,10 +18,6 @@ export default class Game {
 
     UIButtons.initListeners(this)
 
-    this.hands = clearHands()
-
-    this.playerVictoryPercentage = null
-
     this.victoryCount = {
 
       player: 0,
@@ -37,15 +33,22 @@ export default class Game {
   }
 
 
+  shuffleDeck() {
+    
+    this.roundsSinceShuffle = 1
+
+    this.deck = new Deck()
+
+  }
+
+
   dealHands() {
 
-    UIButtons.setDealText(DEAL)
-
-    this.roundsSinceShuffle++
-
-    renderNewRound(this.victor)
-
     this.hands = clearHands()
+
+    shouldShuffle(this.roundsSinceShuffle) && this.shuffleDeck()
+    //pass last victor--must update losing player's hand UI
+    renderNewRound(this.victor)
 
     for (var i = 0; i < 2; i++) {
 
@@ -67,13 +70,22 @@ export default class Game {
     this.hands[participant].setCard(card)
 
     UIHand.update(participant, card, this.hands[participant].cards.length - 1)
-
+//maybe refactor this
     participant === DEALER && this.hands[participant].setStand()
 
     this.victoryCheck(participant)
 
   }
 
+
+  setStandPlayer() {
+
+    this.hands[PLAYER].setStand()
+
+    this.victoryCheck()
+
+  }
+  
 
   victoryCheck(participant) {
 
@@ -86,7 +98,7 @@ export default class Game {
 
     if (shouldDealerPlay(this.hands)) {
       //if participant is player, this is the dealer's first turn
-      isDealersFirstTurn && revealDealerHand(this.hands[DEALER].cards[0])
+      isDealersFirstTurn && renderDealerHand(this.hands[DEALER].cards[0])
 
       this.dealCard(DEALER)
 
@@ -95,43 +107,17 @@ export default class Game {
   }
 
 
-  setStandPlayer() {
-
-    this.hands[PLAYER].setStand()
-
-    this.victoryCheck()
-
-  }
-
-
   declareVictor() {
+
+    this.roundsSinceShuffle++
 
     this.victor = determineVictor(this.hands)
     
-    revealDealerHand(this.hands[DEALER].cards[0])
-
-    if (shouldShuffle(this.roundsSinceShuffle)) {
-
-      UIButtons.setDealText(SHUFFLE_AND_DEAL)
-
-      this.shuffleDeck()
-
-    }
+    renderDealerHand(this.hands[DEALER].cards[0])
 
     this.victoryCount[this.victor] += 1
 
-    UIHand.declareVictor(this.victor)
-
-    UIStats.update(this.victor, this.victoryCount)
-
-  }
-
-
-  shuffleDeck() {
-    
-    this.roundsSinceShuffle = 1
-
-    this.deck = new Deck()
+    renderVictory(this.victor, this.victoryCount, shouldShuffle(this.roundsSinceShuffle))
 
   }
 
@@ -157,7 +143,7 @@ const shouldShuffle = roundsSinceShuffle => roundsSinceShuffle === ROUNDS_UNTIL_
 const determineVictor = hands => hands[DEALER].bust || (!hands[PLAYER].bust && hands[PLAYER].cumulativeVal > hands[DEALER].cumulativeVal) ? PLAYER : DEALER
 
 //UI utils
-const revealDealerHand = firstDealerCard => {
+const renderDealerHand = firstDealerCard => {
 
   UIButtons.setHitStandState(false)
 
@@ -168,9 +154,22 @@ const revealDealerHand = firstDealerCard => {
 
 const renderNewRound = victor => {
 
+  UIButtons.setTextDeal(DEAL)
+
   UIButtons.setHitStandState(true)
 
   UIHand.clear(victor)
+
+}
+
+
+const renderVictory = (victor, victoryCount, shouldShuffle) => {
+
+  shouldShuffle && UIButtons.setTextDeal(SHUFFLE_AND_DEAL)
+
+  UIHand.declareVictor(victor)
+
+  UIStats.update(victor, victoryCount)
 
 }
 
