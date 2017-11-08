@@ -111,9 +111,9 @@ export default class Game {
 
     this.victor = determineVictor(this.hands)
     
-    renderDealerHand(this.hands[DEALER].cards[0])
-
     this.victoryCount[this.victor] += 1
+
+    renderDealerHand(this.hands[DEALER].cards[0])
 
     renderVictory(this.victor, this.victoryCount, shouldShuffle(this.roundsSinceShuffle))
 

@@ -1,3 +1,3 @@
-import Game from './game/blackjack/Game'
+import BlackjackGame from './blackjack/Game'
 
-window.onload = new Game()
+window.onload = new BlackjackGame()

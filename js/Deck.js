@@ -51,6 +51,30 @@ const shuffleDeck = (deck) => {
 }
 
 
+const buildDeck = cardVals => {
+
+  const deck = []
+
+  for (let cardVal of cardVals) {
+
+    for (let suit of CARD_PROPS.suit) {
+
+      deck.push({
+
+        suit: suit,
+
+        ...cardVal,
+
+      })
+
+    }
+
+  }
+
+  return deck
+
+}
+
 
 const buildCardVals = () => {
 
@@ -80,27 +104,3 @@ const buildCardVals = () => {
 
 }
 
-
-const buildDeck = cardVals => {
-
-  const deck = []
-
-  for (let cardVal of cardVals) {
-
-    for (let suit of CARD_PROPS.suit) {
-
-      deck.push({
-
-        suit: suit,
-
-        ...cardVal,
-
-      })
-
-    }
-
-  }
-
-  return deck
-
-}

@@ -13,7 +13,7 @@ const opposingHands = {
 
 //hand methods:
 
-const declareLosingHand = victor => {
+const declareLoser = victor => {
 
   opposingHands[victor].style.opacity = 0.5
 
@@ -126,6 +126,6 @@ export default {
 
   clear: clear,
 
-  declareVictor: declareLosingHand,
+  declareVictor: declareLoser,
 
 }
