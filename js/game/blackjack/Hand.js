@@ -9,7 +9,7 @@ export default class Hand {
 
     this.shouldToggleAce = participant === DEALER ? shouldToggleAceDealer : bustWithoutToggle
 
-    this.shouldStand = participant === DEALER ? () => shouldStandDealer(this.cumulativeVal) : shouldStandPlayer
+    this.shouldStand = participant === DEALER ? () => shouldStandDealer(this.cumulativeVal) : () => false
 
   }
 
@@ -19,6 +19,8 @@ export default class Hand {
     this.cards.push(card)
 
     this.updateProps()
+
+    this.shouldStand() && this.setStand()
 
   } 
 
@@ -46,7 +48,7 @@ export default class Hand {
 
   setStand() {
 
-    this.stand = this.shouldStand(this.cumulativeVal)
+    this.stand = true
 
   }
 
@@ -68,8 +70,6 @@ const didBust = cumulativeVal => cumulativeVal > BUST_LIMIT
 const shouldStandDealer = cumulativeVal => cumulativeVal < BUST_LIMIT && cumulativeVal >= DEALER_STAND_MIN
 
 
-const shouldStandPlayer = () => true
-
 //util
 const toggleAce = cards => {
 
@@ -79,6 +79,7 @@ const toggleAce = cards => {
   let aceToggled = false
 
   for (let card of cards) {
+    
     if (!aceToggled && card.face && card.face === ACE && card.value === ACE_VALUE.high) {
 
       card.value = 1
@@ -116,7 +117,7 @@ const toggleableAce = cards => {
 const calcCumulativeVal = cards => {
 
   let cumulativeVal = 0 
-  
+
   for (let card of cards) {
   
     cumulativeVal += card.value

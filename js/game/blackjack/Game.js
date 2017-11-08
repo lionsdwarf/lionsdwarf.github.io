@@ -4,7 +4,7 @@ import Deck from './Deck'
 
 import Hand from './Hand'
 
-import UIHand from './ui/Hands'
+import UIHands from './ui/Hands'
 
 import UIStats from './ui/Stats'
 
@@ -69,9 +69,7 @@ export default class Game {
 
     this.hands[participant].setCard(card)
 
-    UIHand.update(participant, card, this.hands[participant].cards.length - 1)
-//maybe refactor this
-    participant === DEALER && this.hands[participant].setStand()
+    UIHands.dealCard(participant, card, this.hands[participant].cards.length - 1)
 
     this.victoryCheck(participant)
 
@@ -97,7 +95,7 @@ export default class Game {
   nextTurn(isDealersFirstTurn) {
 
     if (shouldDealerPlay(this.hands)) {
-      //if participant is player, this is the dealer's first turn
+
       isDealersFirstTurn && renderDealerHand(this.hands[DEALER].cards[0])
 
       this.dealCard(DEALER)
@@ -147,7 +145,7 @@ const renderDealerHand = firstDealerCard => {
 
   UIButtons.setHitStandState(false)
 
-  UIHand.revealDealer(firstDealerCard)
+  UIHands.revealDealer(firstDealerCard)
 
 }
 
@@ -158,7 +156,7 @@ const renderNewRound = victor => {
 
   UIButtons.setHitStandState(true)
 
-  UIHand.clear(victor)
+  UIHands.clear(victor)
 
 }
 
@@ -167,7 +165,7 @@ const renderVictory = (victor, victoryCount, shouldShuffle) => {
 
   shouldShuffle && UIButtons.setTextDeal(SHUFFLE_AND_DEAL)
 
-  UIHand.declareVictor(victor)
+  UIHands.declareVictor(victor)
 
   UIStats.update(victor, victoryCount)
 

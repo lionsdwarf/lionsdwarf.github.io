@@ -27,7 +27,7 @@ const resetLostHand = victor => {
 }
 
 
-const update = (participant, card, cardNum) => {
+const dealCard = (participant, card, cardNum) => {
 
   const handEl = document.querySelector('#hands #' + participant)
   //if card is dealer's first, it's face down--do not reveal yet
@@ -122,7 +122,7 @@ export default {
 
   revealDealer: revealDealer,
 
-  update: update,
+  dealCard: dealCard,
 
   clear: clear,
 
