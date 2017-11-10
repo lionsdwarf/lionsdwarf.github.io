@@ -1,54 +1,54 @@
-import { DEALER, ACE_VALUE, ACE, BUST_LIMIT, DEALER_STAND_MIN, } from './constants'
+import { DEALER, ACE_VALUE, ACE, BUST_LIMIT, DEALER_STAND_MIN, } from './constants';
 
 
 export default class Hand {
 
   constructor(participant) {
 
-    this.cards = []
+    this.cards = [];
 
-    this.shouldToggleAce = participant === DEALER ? shouldToggleAceDealer : bustWithoutToggle
+    this.shouldToggleAce = participant === DEALER ? shouldToggleAceDealer : bustWithoutToggle;
 
-    this.shouldStand = participant === DEALER ? () => shouldStandDealer(this.cumulativeVal) : () => false
+    this.shouldStand = participant === DEALER ? () => shouldStandDealer(this.cumulativeVal) : () => false;
 
   }
 
 
   setCard(card) {
 
-    this.cards.push(card)
+    this.cards.push(card);
 
-    this.updateProps()
+    this.updateProps();
 
-    this.shouldStand() && this.setStand()
+    this.shouldStand() && this.setStand();
 
   } 
 
 
   updateProps() {
 
-    this.cumulativeVal = calcCumulativeVal(this.cards)
+    this.cumulativeVal = calcCumulativeVal(this.cards);
 
-    toggleableAce(this.cards) && this.shouldToggleAce(this.cumulativeVal) && this.toggleAceAndUpdateProps()
+    toggleableAce(this.cards) && this.shouldToggleAce(this.cumulativeVal) && this.toggleAceAndUpdateProps();
 
-    this.bust = didBust(this.cumulativeVal)
+    this.bust = didBust(this.cumulativeVal);
     
-    this.blackjack = hasBlackjack(this.cumulativeVal)
+    this.blackjack = hasBlackjack(this.cumulativeVal);
 
   }
 
 
   toggleAceAndUpdateProps() {
 
-    this.cards = toggleAce(this.cards)
+    this.cards = toggleAce(this.cards);
 
-    this.updateProps()
+    this.updateProps();
 
   }
 
   setStand() {
 
-    this.stand = true
+    this.stand = true;
 
   }
 
@@ -73,26 +73,26 @@ const shouldStandDealer = cumulativeVal => cumulativeVal < BUST_LIMIT && cumulat
 //util
 const toggleAce = cards => {
 
-  const newHand = []
+  const newHand = [];
 
   //if multiple aces in hand, only toggle 1
-  let aceToggled = false
+  let aceToggled = false;
 
   for (let card of cards) {
     
     if (!aceToggled && card.face && card.face === ACE && card.value === ACE_VALUE.high) {
 
-      card.value = 1
+      card.value = 1;
 
-      aceToggled = true
+      aceToggled = true;
 
     }
 
-    newHand.push(card)
+    newHand.push(card);
 
   }
 
-  return newHand
+  return newHand;
 
 }
 
@@ -103,28 +103,28 @@ const toggleableAce = cards => {
 
     if (card.face && card.face === ACE && card.value === ACE_VALUE.high) {
 
-      return true
+      return true;
 
     }
 
   }
 
-  return false
+  return false;
 
 }
 
 //accumulate value of cards in hand
 const calcCumulativeVal = cards => {
 
-  let cumulativeVal = 0 
+  let cumulativeVal = 0;
 
   for (let card of cards) {
   
-    cumulativeVal += card.value
+    cumulativeVal += card.value;
 
   }
 
-  return cumulativeVal
+  return cumulativeVal;
 
 }
 

@@ -1,24 +1,24 @@
-export const PLAYER = 'player'
+export const PLAYER = 'player';
 
-export const DEALER = 'dealer'
+export const DEALER = 'dealer';
 
-export const ACE = 'A'
+export const ACE = 'A';
 
-export const DEAL = 'Deal'
+export const DEAL = 'Deal';
 
-export const SHUFFLE_AND_DEAL = 'Shuffle & Deal'
+export const SHUFFLE_AND_DEAL = 'Shuffle & Deal';
 
-export const GAME_PARTICIPANTS = [PLAYER, DEALER]
+export const GAME_PARTICIPANTS = [PLAYER, DEALER];
 
-export const ROUNDS_UNTIL_SHUFFLE = 6
+export const ROUNDS_UNTIL_SHUFFLE = 6;
 
-export const FACE_VALUE = 10
+export const FACE_VALUE = 10;
 
-export const BUST_LIMIT = 21
+export const BUST_LIMIT = 21;
 
-export const DEALER_STAND_MIN = 17
+export const DEALER_STAND_MIN = 17;
 
-export const CSS_CARD_OFFSET = 100
+export const CSS_CARD_OFFSET = 100;
 
 export const ACE_VALUE = {
 
@@ -26,7 +26,7 @@ export const ACE_VALUE = {
 
   low: 1,
 
-}
+};
 
 export const CARD_PROPS = {
 
@@ -34,6 +34,6 @@ export const CARD_PROPS = {
 
   suit: [ 'spades', 'hearts', 'diamonds', 'clubs' ],
 
-}
+};
 
 

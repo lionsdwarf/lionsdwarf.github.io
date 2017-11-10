@@ -1,18 +1,18 @@
-import { FACE_VALUE, ACE_VALUE, CARD_PROPS, ACE, } from './constants'
+import { FACE_VALUE, ACE_VALUE, CARD_PROPS, ACE, } from './constants';
 
 
 export default class Deck {
 
   constructor() {
 
-    this.cards = generateShuffledDeck()
+    this.cards = generateShuffledDeck();
 
   }
 
 
   drawCard() {
 
-    return this.cards.splice(0, 1)[0]
+    return this.cards.splice(0, 1)[0];
 
   }
 
@@ -21,39 +21,39 @@ export default class Deck {
 
 const generateShuffledDeck = () => {
 
-  const cardVals = buildCardVals()
+  const cardVals = buildCardVals();
 
-  const deck = buildDeck(cardVals)
+  const deck = buildDeck(cardVals);
 
-  return shuffleDeck(deck)
+  return shuffleDeck(deck);
 
 }
 
 
 const shuffleDeck = (deck) => {
 
-  let shuffledDeck = []
+  let shuffledDeck = [];
 
-  let unshuffledCount = deck.length
+  let unshuffledCount = deck.length;
 
-  let selectedIndex
+  let selectedIndex;
 
   while (unshuffledCount) {
 
-    selectedIndex = Math.floor(Math.random() * unshuffledCount--)
+    selectedIndex = Math.floor(Math.random() * unshuffledCount--);
 
-    shuffledDeck.push(deck.splice(selectedIndex, 1)[0])
+    shuffledDeck.push(deck.splice(selectedIndex, 1)[0]);
 
   }
 
-  return shuffledDeck
+  return shuffledDeck;
 
 }
 
 
 const buildDeck = cardVals => {
 
-  const deck = []
+  const deck = [];
 
   for (let cardVal of cardVals) {
 
@@ -65,7 +65,7 @@ const buildDeck = cardVals => {
 
         ...cardVal,
 
-      })
+      });
 
     }
 
@@ -98,9 +98,9 @@ const buildCardVals = () => {
 
       }
 
-  )
+  );
 
-  return cardVals
+  return cardVals;
 
 }
 

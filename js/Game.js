@@ -1,10 +1,10 @@
-import { PLAYER, DEALER, INITIAL_CARDS_DEALT, GAME_PARTICIPANTS, ROUNDS_UNTIL_SHUFFLE, DEAL, SHUFFLE_AND_DEAL } from './constants'
+import { PLAYER, DEALER, INITIAL_CARDS_DEALT, GAME_PARTICIPANTS, ROUNDS_UNTIL_SHUFFLE, DEAL, SHUFFLE_AND_DEAL } from './constants';
 
-import Deck from './Deck'
+import Deck from './Deck';
 
-import Hand from './Hand'
+import Hand from './Hand';
 
-import UI from './ui'
+import UI from './ui';
 
 
 export default class Game {
@@ -12,7 +12,7 @@ export default class Game {
 
   constructor() {
 
-    UI('init', this)
+    UI('init', this);
 
     this.victoryCount = {
 
@@ -20,39 +20,39 @@ export default class Game {
 
       dealer: 0,
 
-    }
+    };
 
-    this.shouldShuffle = true
+    this.shouldShuffle = true;
 
-    this.dealHands()
+    this.dealHands();
 
   }
 
 
   shuffleDeck() {
     
-    this.roundsSinceShuffle = 1
+    this.roundsSinceShuffle = 1;
 
-    this.deck = new Deck()
+    this.deck = new Deck();
 
-    this.shouldShuffle = false
+    this.shouldShuffle = false;
 
   }
 
 
   dealHands() {
 
-    this.hands = clearHands()
+    this.hands = clearHands();
 
-    this.shouldShuffle && this.shuffleDeck()
+    this.shouldShuffle && this.shuffleDeck();
     //pass last victor--must update losing player's hand UI
-    UI('renderNewRound', this)
+    UI('renderNewRound', this);
 
     for (var i = 0; i < 2; i++) {
 
       for (let participant of GAME_PARTICIPANTS) {
         //if Player is dealt blackjack, nextTurn() deals final Dealer card, so don't call it again.
-        !this.hands[PLAYER].blackjack && this.dealCard(participant)
+        !this.hands[PLAYER].blackjack && this.dealCard(participant);
         
       }
 
@@ -63,9 +63,9 @@ export default class Game {
   
   dealCard(participant) {
 
-    const card = this.deck.drawCard()
+    const card = this.deck.drawCard();
 
-    this.hands[participant].setCard(card)
+    this.hands[participant].setCard(card);
 
     UI('renderCard', this, {
 
@@ -73,25 +73,25 @@ export default class Game {
 
       card: card,
 
-    })
+    });
 
-    this.victoryCheck(participant)
+    this.victoryCheck(participant);
 
   }
 
 
   setStandPlayer() {
 
-    this.hands[PLAYER].setStand()
+    this.hands[PLAYER].setStand();
 
-    this.victoryCheck()
+    this.victoryCheck();
 
   }
   
 
   victoryCheck(participant) {
 
-    isGameOver(this.hands) ? this.declareVictor() : this.nextTurn(participant === PLAYER)
+    isGameOver(this.hands) ? this.declareVictor() : this.nextTurn(participant === PLAYER);
 
   }
 
@@ -100,9 +100,9 @@ export default class Game {
 
     if (shouldDealerPlay(this.hands)) {
 
-      isDealersFirstTurn && UI('renderDealerHand', this)
+      isDealersFirstTurn && UI('renderDealerHand', this);
 
-      this.dealCard(DEALER)
+      this.dealCard(DEALER);
 
     }
 
@@ -111,15 +111,15 @@ export default class Game {
 
   declareVictor() {
 
-    this.roundsSinceShuffle++
+    this.roundsSinceShuffle++;
 
-    this.shouldShuffle = shouldShuffle(this.roundsSinceShuffle)
+    this.shouldShuffle = shouldShuffle(this.roundsSinceShuffle);
 
-    this.victor = determineVictor(this.hands)
+    this.victor = determineVictor(this.hands);
     
-    this.victoryCount[this.victor] += 1
+    this.victoryCount[this.victor] += 1;
 
-    UI('renderVictory', this)
+    UI('renderVictory', this);
 
   }
 
@@ -136,7 +136,7 @@ const shouldDealerPlay = hands => !hands[DEALER].blackjack && !hands[DEALER].sta
 const isFirstDealerCard = (participant, cards) => participant === DEALER && cards.length === 1
 
 
-const isGameOver = hands => hands[DEALER].blackjack || hands[DEALER].bust || hands[PLAYER].bust || hands[DEALER].stand && (hands[PLAYER].stand || hands[PLAYER].blackjack) 
+const isGameOver = hands => hands[DEALER].blackjack || hands[DEALER].bust || hands[PLAYER].bust || hands[DEALER].stand && (hands[PLAYER].stand || hands[PLAYER].blackjack)
 
 
 const shouldShuffle = roundsSinceShuffle => roundsSinceShuffle === ROUNDS_UNTIL_SHUFFLE
@@ -153,6 +153,6 @@ const clearHands = () => {
 
     dealer: new Hand(DEALER),
 
-  }
+  };
 
 }
