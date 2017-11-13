@@ -7,7 +7,7 @@
 
 /*screen*/
 body {
-  background-image: url('../public/table.jpeg');
+  background-image: url('./table.jpeg');
   background-size: cover;
   background-repeat: no-repeat;
 }
@@ -55,7 +55,7 @@ main ol {
 
 .faceDown {
   /*card image taken from http://chetart.com/blog/*/
-  background-image: url('../public/playing-card-back.jpg');
+  background-image: url('./playing-card-back.jpg');
   background-size: contain;
 }
 
