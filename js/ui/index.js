@@ -6,9 +6,8 @@ import UIStats from './Stats';
 
 import UIButtons from './Buttons';
 
-const UIUpdate = (type, game, payload) => {
 
-  const Game = game;
+const UIUpdate = (type, Game, payload) => {
 
   switch (type) {
 
